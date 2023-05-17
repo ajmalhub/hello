@@ -36,6 +36,7 @@ stages:
       inputs:
        script: |
           sudo usermod -aG docker $USER
+          newgrp docker
     - task: Docker@2
       inputs:
         command: 'build'
