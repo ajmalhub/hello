@@ -36,7 +36,14 @@ stages:
       inputs:
        script: |
           sudo usermod -aG docker $USER
-          newgrp docker
+- stage: Build2
+  displayName: Build2 image
+  jobs:
+  - job: Build2
+    displayName: Build2
+    pool:
+      name: pool1
+    steps:
     - task: Docker@2
       inputs:
         command: 'build'
