@@ -32,10 +32,4 @@ stages:
           echo  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
           sudo apt-get update
           sudo apt-get install -y docker-ce docker-ce-cli 
-    - task: Docker@2
-      displayName: Build an image
-      inputs: 
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+          sudo docker build abc:$(tag) -f '$(Build.SourcesDirectory)/Dockerfile'
