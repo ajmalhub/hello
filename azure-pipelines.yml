@@ -38,6 +38,5 @@ stages:
           sudo usermod -aG docker $USER
     - task: Docker@2
       inputs:
-        containerRegistry: 'sp-acr'
-        command: 'buildAndPush'
+        command: 'build'
         Dockerfile: '**/Dockerfile'
