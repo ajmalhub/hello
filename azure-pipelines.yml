@@ -32,9 +32,6 @@ stages:
           echo  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
           sudo apt-get update
           sudo apt-get install -y docker-ce docker-ce-cli 
-    - task: CmdLine@2
-      inputs:
-       script: |
           sudo usermod -aG docker $USER
 - stage: Build2
   displayName: Build2 image
@@ -44,7 +41,7 @@ stages:
     pool:
       name: pool1
     steps:
-    - task: Docker@2
+    - task: CmdLine@2
       inputs:
-        command: 'build'
-        Dockerfile: '**/Dockerfile'
+       script: |
+          sudo docker build -f /agent/_work/1/s/Dockerfile /agent/_work/1/s
